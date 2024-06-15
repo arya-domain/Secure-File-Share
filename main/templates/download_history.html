@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download History</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            display: flex;
+            justify-content: right;
+            align-items: right;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+
+        }
+    </style>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <div class="navbar">
+        <h3 style="text-align: center; color: white; margin: 10px 17%;">Secure Share</h3>
+        <a href="/upload">Upload</a>
+        <a href="/list">Uploaded Files</a>
+        <a href="/download">Download</a>
+        <a href="/accounts/logout">Logout</a>
+    </div>
+    {% endif %}
+    <h1>Download History</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Download Time</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for download in download_history %}
+            <tr>
+                <td>{{ download.filename }}</td>
+                <td>{{ download.download_time }}</td>
+                <td>{{ download.username }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No download history available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

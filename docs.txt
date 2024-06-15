@@ -1,0 +1,13 @@
+Install Miniconda 
+
+Install  Mongodb Community Version
+
+Run `conda env create -f environment.yml` in the terminal to install all necessary packages for this project.
+
+Run `conda activate dj` in terminal
+
+Create a database in mongodb with name `secure_share`.
+
+Run `python manage.py makemigrations` and then `python manage.py migrate` in terminal.
+
+Run `python manage.py runserver` to start the project.
